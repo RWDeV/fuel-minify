@@ -427,7 +427,7 @@ class Minify
 				unset(self::$_files[$k]);
 
 				$file = basename($file['path']);
-				$msg  = 'Skipping %s due to invalid file.';add
+				$msg  = 'Skipping %s due to invalid file.';
 				$msg  = sprintf($msg, $file);
 
 				\Log::debug($msg, 'Minify::validateFiles()');
