@@ -55,27 +55,28 @@ class Minify
 		self::$_opt[$key] = $value;
 
 	}
-	
+
 	/**
 	 * Add file(s) to be minified.
 	 *
 	 * @param	mixed	URL or file path to file(s) to minified
+	 * @param	string	Directory name where file locates
 	 * @return	void
 	 */
-	static public function add($files)
+	static public function add($files, $dir = '')
 	{
 
 		if (is_array($files) === true) {
 
 			foreach ($files as $file) {
 
-				self::add($file);
+				$dir ? self::add($dir.$file) : self::add($file);
 
 			}
 
 		} else {
 
-			self::$_files[]['path'] = $files;
+			self::$_files[]['path'] = $dir ? $dir.$files : $files;
 
 		}
 
@@ -426,7 +427,7 @@ class Minify
 				unset(self::$_files[$k]);
 
 				$file = basename($file['path']);
-				$msg  = 'Skipping %s due to invalid file.';
+				$msg  = 'Skipping %s due to invalid file.';add
 				$msg  = sprintf($msg, $file);
 
 				\Log::debug($msg, 'Minify::validateFiles()');
