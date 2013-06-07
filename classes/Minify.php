@@ -66,7 +66,7 @@ class Minify
 	static public function add($files, $dir = '')
 	{
 
-		if (is_array($files) === true) {
+		if (is_array($files)) {
 
 			foreach ($files as $file) {
 
@@ -464,7 +464,7 @@ class Minify
 
 				} else {
 
-					if (file_exists($file['path']) === true) {
+					if (file_exists($file['path'])) {
 
 						$key['data'] = file_get_contents($file['path']);
 						$key['hash'] = hash(self::$_opt['algorithm'], $key['data']);
