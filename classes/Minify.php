@@ -472,7 +472,7 @@ class Minify
 
 					} else {
 
-						unset(self::$_file[$k]);
+						unset(self::$_files[$k]);
 						\Log::error(basename($file['path']).' is an invalid file', 'Minify::validateFiles()');
 
 					}
@@ -573,6 +573,7 @@ class Minify
 
 		}
 
+		$hashes = array();
 		foreach($cache as $file) {
 
 			$hashes[$file['path']] = $file['hash'];
@@ -600,16 +601,7 @@ class Minify
 
 		}//end foreach
 
-		if (empty($hashes) === false) {
-
-			return false;
-
-		} else {
-			
-			return true;
-
-		}
-
+		return empty($hashes);
 	}
 
 	static protected function evaluate()
